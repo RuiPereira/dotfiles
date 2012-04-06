@@ -6,8 +6,6 @@ export MANPAGER="less -X"
 export LESS_TERMCAP_md="$ORANGE"
 # do not break ipython
 export LESS="-R"
-# show colors on terminal
-export CLICOLOR=1
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768

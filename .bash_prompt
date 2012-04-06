@@ -51,3 +51,5 @@ function parse_git_branch() {
 }
 
 PS1="\[${BOLD}\]\[$WHITE\]\u@\h: \[$RESET\]\w\[${BOLD}\]\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\$(parse_git_branch)\n\$ \[$RESET\]"
+# show current dir in Xterm title
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}\007"'
