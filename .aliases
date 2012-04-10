@@ -7,6 +7,7 @@ alias -- -="cd -"
 # Shortcuts
 alias p="python"
 alias i="ipython"
+alias il="ipython --pylab"
 alias g="git"
 alias e="emacs"
 alias ew="emacs -nw"
@@ -30,7 +31,7 @@ alias rm="rm -i"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
+alias localip="ipconfig getifaddr en1 || ipconfig getifaddr en0"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Enhanced WHOIS lookups
