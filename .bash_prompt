@@ -46,14 +46,24 @@ function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+function parse_branch() {
+    if [ -d "CVS" ]; then
+        if [ -e "CVS/Tag" ]; then
+        # CVS
+            echo " ($(cat CVS/Tag | cut -b 2-))"
+        else
+            echo " (HEAD)"
+        fi
+    elif [ -d ".git" ]; then
+        # git
+	    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
+    fi
 }
 
 function last_two_dirs() {
     pwd |rev| awk -F / '{print $1,$2}' | rev | sed s_\ _/_
 }
 
-PS1="\033[0;32m\][\t] \033[0;36m\]\$(last_two_dirs)\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\$(parse_git_branch) \$ \[$RESET\]"
+PS1="\033[0;32m\][\t] \033[0;36m\]\$(last_two_dirs)\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\$(parse_branch) \$ \[$RESET\]"
 # show current dir in Xterm title
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/$HOME/~}\007"'
