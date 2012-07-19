@@ -6,6 +6,7 @@ alias -- -="cd -"
 
 # Shortcuts
 alias p="python"
+alias pdb="python -m pdb"
 alias i="ipython"
 alias il="ipython --pylab"
 alias g="git"
