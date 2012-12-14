@@ -1,5 +1,5 @@
 # Make vim the default editor
-export EDITOR="emacs"
+export EDITOR="emacs -nw"
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X"
 # Highlight section titles in manual pages
@@ -12,7 +12,7 @@ export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
-export HISTIGNORE="cd:cd -:pwd;exit:date:* --help"
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # version control
 export CVSEDITOR="emacs -nw"

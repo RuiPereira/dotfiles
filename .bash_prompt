@@ -65,6 +65,9 @@ function last_two_dirs() {
     pwd |rev| awk -F / '{print $1,$2}' | rev | sed s_\ _/_
 }
 
-PS1="\[\033[0;32m\][\t] \[\033[0;36m\]\$(last_two_dirs)\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\$(parse_branch) \$ \[$RESET\]"
+export PS1="\[\033[0;32m\][\t] \[\033[0;36m\]\$(last_two_dirs)\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" \")\$(parse_branch) \$ \[$RESET\]"
+# export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+export PS2="\[$ORANGE\]→ \[$RESET\]"
+
 # show current dir in Xterm title
 # export PROMPT_COMMAND="echo -ne '\033]0;${PWD/$HOME/~}\007'"
