@@ -35,6 +35,9 @@ fi
 # List all files colorized in long format
 alias l="ls -l ${colorflag}"
 
+# List all files colorized in long format reverse-ordered by creation time
+alias lt="ls -lrt ${colorflag}"
+
 # List all files colorized in long format, including dot files
 alias la="ls -la ${colorflag}"
 
