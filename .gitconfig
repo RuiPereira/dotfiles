@@ -78,3 +78,7 @@
 
 [push]
 	default = simple
+
+[user]
+    name = Rui Pereira
+    email = rui.pereira@gmail.com
