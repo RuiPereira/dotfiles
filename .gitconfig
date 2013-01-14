@@ -77,4 +77,4 @@
 	insteadOf = "gist:"
 
 [push]
-	default = simple # only for git > 1.7.11
+	default = simple
