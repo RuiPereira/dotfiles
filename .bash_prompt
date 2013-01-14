@@ -78,5 +78,5 @@ function last_two_dirs() {
 }
 
 # also shows current dir in Xterm title
-export PS1="\[\033]0;\u@\h: \w\007\]\[\033[0;32m\][\t] \[\033[0;33m\]\u@\h \[\033[0;36m\]\$(last_two_dirs)\[$RESET\]\$(parse_branch) \$ \[$RESET\]"
+export PS1="\[\033]0;\h: \w\007\]\[\033[0;32m\][\t] \[\033[0;33m\]\u@\h \[\033[0;36m\]\$(last_two_dirs)\[$RESET\]\$(parse_branch) \$ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
