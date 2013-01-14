@@ -44,20 +44,31 @@ export WHITE
 export BOLD
 export RESET
 
+function parse_svn_dirty() {
+    [[ $(svn status 2> /dev/null) != "" ]] && echo "*"
+}
+
+function parse_hg_dirty() {
+    [[ $(hg status 2> /dev/null) != "" ]] && echo "*"
+}
+
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
 }
 
 function parse_branch() {
+    # CVS
     if [ -d "CVS" ]; then
-        if [ -e "CVS/Tag" ]; then
-        # CVS
-            echo " ($(cat CVS/Tag | cut -b 2-))"
-        else
-            echo " (HEAD)"
-        fi
+        [[ -e "CVS/Tag" ]] && echo " ($(cat CVS/Tag | cut -b 2-))" || echo " (HEAD)"
+    # svn
+    elif [ "x`svn info 2>&1| grep 'not a working copy'`" == "x" ]; then
+        svnbranch=$(svn info | grep '^URL:' | egrep -o '(tags|branches)/[^/]+|trunk' | egrep -o '[^/]+$')
+        [[ "${svnbranch}" != "" ]] && echo " (${svnbranch}$(parse_svn_dirty))"
+    # mercurial
+    elif [ -d ".hg" ]; then
+        echo " ($(cat .hg/branch)$(parse_hg_dirty))"
+    # git
     elif [ -d ".git" ]; then
-        # git
 	    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
     fi
 }
