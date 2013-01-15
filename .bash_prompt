@@ -61,7 +61,7 @@ function parse_branch() {
     if [ -d "CVS" ]; then
         [[ -e "CVS/Tag" ]] && echo " ($(cat CVS/Tag | cut -b 2-))" || echo " (HEAD)"
     # svn
-    elif [ "x`svn info 2>&1| grep 'not a working copy'`" == "x" ]; then
+    elif [ "x`svn info 2>&1| egrep '[EW]155(007|010)'`" == "x" ]; then
         svnbranch=$(svn info | grep '^URL:' | egrep -o '(tags|branches)/[^/]+|trunk' | egrep -o '[^/]+$')
         [[ "${svnbranch}" != "" ]] && echo " (${svnbranch}$(parse_svn_dirty))"
     # mercurial
