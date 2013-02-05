@@ -17,5 +17,5 @@ export MANPAGER="less -X"
 
 # version control
 # export CVSEDITOR="emacs -nw"
-export CVSEDITOR="subl -n -w"
+export CVSEDITOR="subl -w"
 export CVS_RSH=ssh
