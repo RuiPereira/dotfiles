@@ -84,5 +84,5 @@ else
     USERCOLOR="\033[0;33m"
 fi
 
-export PS1="\[\033]0;\h: \w\007\]\[$USERCOLOR\]\u\[\033[0;33m\]@\h \[\033[0;36m\]\$(last_two_dirs)\[$RESET\]\$(parse_branch) \$ \[$RESET\]"
+export PS1="\[\033]0;\h: \w\007\]\[\033[0;32m\]\A \[$USERCOLOR\]\u\[\033[0;33m\]@\h \[\033[0;36m\]\$(last_two_dirs)\[$RESET\]\$(parse_branch) \$ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
